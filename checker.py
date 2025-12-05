@@ -39,7 +39,7 @@ REPO_LIST = [repo.split('|') for repo in os.environ.get('REPO_LIST', '').split('
 async def get_key_len(rk):
     pool = ConnectionPool.from_url(REDISURL)
     r: Redis = await Redis(connection_pool=pool, password=REDISPASSWORD)
-    return await r.llen(rk)
+    return await r.llen(rk)  # type: ignore
 
 
 def main():
@@ -73,7 +73,7 @@ def main():
                     # 生产冷却时间 1min - 3min
                     rd_time = random.randint(60, 180)
                     logger.info(f'仓库 {repo} 冷却时间 {rd_time} 秒')
-                    time.sleep(rd_time)
+                    # time.sleep(rd_time)
                     if nochange == 0:
                         # 修改1.txt
                         uid = str(uuid4()).upper()
