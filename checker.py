@@ -45,7 +45,7 @@ async def get_key_len(rk):
 def main():
     worker_tasks_nums = 50
     length = 0
-    for task_k in ['01', '02', '03']:
+    for task_k in ['03', '02', '01']:
         rk = f'insurance:tasks:company_tasks_action:{task_k}'
         length = asyncio.run(get_key_len(rk))
         logger.info(f'队列{rk}长度为{length}')
